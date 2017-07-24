@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Socket IO</title>
+</head>
+<body>
+	<div id="displayMessage"></div>
+	<div>
+		<textarea name="" id="chat" cols="30" rows="10"></textarea>
+		<button onclick="submitChat()">Send</button>
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io("http://10.72.5.194:2000");
+
+    var chat = document.getElementById("chat"),
+		displayMessage = document.getElementById("displayMessage");
+
+    socket.on("msg-from-server", function(event) {
+    	displayMessage.innerHTML += event.gretting+'</br>'
+    })
+    
+    function submitChat() {
+		socket.emit("msg-from-client", chat.value)
+		return false
+	}
+	</script>
+</body>
+</html>
