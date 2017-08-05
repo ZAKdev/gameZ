@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d -p",
-    "prod": "webpack --config webpack.config.prod.js -d -p"
+    "prod": "webpack --config webpack.config.prod.js -d -p",
+    "server": "nodemon ./server/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "cors": "^2.8.1",
     "express": "^4.15.3",
     "http": "0.0.0",
+    "lodash": "^4.17.4",
     "path": "^0.12.7",
     "react": "^15.0.2",
     "react-cookie": "^0.4.8",
@@ -44,6 +46,7 @@
     "react-router": "^2.4.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
   }
 }

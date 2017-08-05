@@ -11,7 +11,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		return <div className="AppRoute">{this.props.app.content}</div>
+		return <div className="AppRoute">{this.props.children}</div>
 	}
 
 	componentDidMount() {
@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(AppActions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

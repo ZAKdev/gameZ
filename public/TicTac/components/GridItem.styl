@@ -1,0 +1,39 @@
+.GridItem
+  width 98px
+  height 98px
+  border 1px solid $primaryColor
+  list-style none
+  float left
+  &.X
+    position relative
+    &:after
+      content ''
+      width 10px
+      height 80px
+      background $primaryColor
+      border-radius 2px
+      position absolute
+      left 45%
+      top 10px
+      transform rotate(-45deg)
+    &:before
+      content ''
+      width 10px
+      height 80px
+      background $primaryColor
+      border-radius 2px
+      position absolute
+      left 45%
+      top 10px
+      transform rotate(45deg)
+  &.O
+    position relative
+    &:after
+      content ''
+      width 50px
+      height 50px
+      border-radius 50px
+      border 8px solid $primaryColor
+      position absolute
+      left 15px
+      top 15px

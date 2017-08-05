@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import AppRoute from '../App/AppReducer';
+import App from '../App/AppReducer';
+import TicTac from '../TicTac/TicTacReducer';
 
 export default () => createStore(combineReducers({
-	AppRoute,
+	App,
+	TicTac
 }), applyMiddleware(thunk))

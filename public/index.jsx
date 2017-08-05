@@ -1,3 +1,6 @@
+// Stylus
+import './index.styl'
+
 // For borwser compatibility
 import 'babel-polyfill'
 
@@ -8,16 +11,19 @@ import ReactDOM from 'react-dom'
 
 import ReduxStore from './ReduxStore'
 import App from './App/App.jsx'
+import TicTac from './TicTac/TicTac.jsx'
+
+const reduxStore = ReduxStore()
 
 ReactDOM.render(
-	<Provider store={ReduxStore()}>
+	<Provider store={reduxStore}>
 		<Router history={hashHistory}>
 			<Route component={App}>
-				<Route path="/" component={App}/>
+				<Route path="/" component={TicTac}/>
 			</Route>
 		</Router>
 	</Provider>
 	, document.getElementById("mount-node")
 )
 
-window.reduxStore = ReduxStore()
+window.reduxStore = reduxStore
