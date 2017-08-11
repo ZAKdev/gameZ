@@ -6,22 +6,12 @@ const
 	path = require("path"),
 	axios = require("axios");
 
-app.get("/", (req, res) => {
-	res.sendFile(__dirname + '/index.html');
-})
-
 //app.use(express.static(path.join(__dirname, "public")));
 
 io.on("connection", socket => {
-	console.log("new connection made")
-
-	socket.emit("msg-from-server", {
-		gretting: "Hello from Server"
-	})
-
-	socket.on("msg-from-client", msg => {
-		io.emit("msg-from-server", {
-			gretting: msg
+	socket.on("tictacSocket", tictac => {
+		io.emit("tictacSocket", {
+			tictac,
 		})
 	})
 })

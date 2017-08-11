@@ -1,3 +1,7 @@
+import SocketIOClient from 'socket.io-client'
+import { socketPort } from '../../config/config'
+const socket = SocketIOClient(socketPort)
+
 module.exports = (state = {
     start: true,
     grid: ["", "", "", "", "", "", "", "", ""],
@@ -20,16 +24,17 @@ module.exports = (state = {
                 })
             } else {
                 return Object.assign({}, state, {
-                    turn: action.nextTurn
+                    turn: action.nextTurn,
+                    socket: false
                 })
             }
         case "SET_X":
             return Object.assign({}, state, {
-                winner: action.winner
+                winner: action.winner,
             })
         case "SET_O":
             return Object.assign({}, state, {
-                winner: action.winner
+                winner: action.winner,
             })
         case "GAME_END":
             return Object.assign({}, state, {
@@ -44,6 +49,10 @@ module.exports = (state = {
                 winner: "",
                 counts: {X: 0, O: 0}
             })
+        case "RECEIVED_FROM_SOCKET":
+            return Object.assign({}, state, action.tictac)
+        case "UPDATE_SOCKET":
+            socket.emit('tictacSocket', state)
         default:
             return state
     }

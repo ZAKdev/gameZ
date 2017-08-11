@@ -1,8 +1,8 @@
 import patteran from "./patteran"
 import _ from "lodash"
 
-const onGridItemClick = (grid, gridItem, gridIndex, currentTurn) => {
-    return (dispatch) => {
+export const onGridItemClick = (grid, gridItem, gridIndex, currentTurn) => {
+    return dispatch => {
         if(gridItem == ""){
             
             dispatch ({
@@ -24,7 +24,7 @@ const onGridItemClick = (grid, gridItem, gridIndex, currentTurn) => {
             // Start Matching Horizontally
             let gridBreakHoriz = _.chunk(grid, 3);
 
-            gridBreakHoriz.map((items) => {
+            gridBreakHoriz.map(items => {
                 if(_.isEqual(items, Xarray)){
                     dispatch({
                         type: "SET_X",
@@ -106,18 +106,30 @@ const onGridItemClick = (grid, gridItem, gridIndex, currentTurn) => {
                     })
                 }
             })
+            dispatch({
+                type: "UPDATE_SOCKET"
+            })
             // End Matching Cross
         }
     }
 }
 
-const onPlayAgainClick = () => {
-    return {
-        type: "PLAY_AGAIN"
+export const onPlayAgainClick = () => {
+    return dispatch => {
+        dispatch({
+            type: "PLAY_AGAIN"
+        })
+        dispatch({
+            type: "UPDATE_SOCKET"
+        })
     }
 }
 
-module.exports = {
-    onGridItemClick,
-    onPlayAgainClick
+export const receivedFromSocket = tictac => {
+    return dispatch => {
+        dispatch({
+            type: "RECEIVED_FROM_SOCKET",
+            tictac
+        })
+    }
 }

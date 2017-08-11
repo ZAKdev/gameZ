@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import SocketIOClient from 'socket.io-client'
+import { socketPort } from '../../config/config'
 
 import * as TicTacActions from './TicTacActions'
 
@@ -12,6 +14,7 @@ class TicTac extends React.Component {
         super(props)
         this.ClickHandler = this.ClickHandler.bind(this)
         this.PlayHandler = this.PlayHandler.bind(this)
+        this.socket = SocketIOClient(socketPort)
     }
 
     ClickHandler(gridItem, gridIndex){
@@ -41,6 +44,12 @@ class TicTac extends React.Component {
                 })()}
             </div>
         )
+    }
+
+    componentDidMount() {
+        this.socket.on('tictacSocket', receivedAction => {
+            this.props.actions.receivedFromSocket(receivedAction.tictac)
+        })
     }
 }
 

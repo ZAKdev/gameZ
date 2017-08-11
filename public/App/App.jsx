@@ -13,10 +13,6 @@ class App extends React.Component {
 	render() {
 		return <div className="AppRoute">{this.props.children}</div>
 	}
-
-	componentDidMount() {
-		this.props.actions.AppLoaded("App Route Loaded")
-	}
 }
 
 const mapStateToProps = state => ({
